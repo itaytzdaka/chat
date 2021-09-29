@@ -1,0 +1,63 @@
+<div class="layout" [style.backgroundColor]="backgroundColor">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 right">סטטוס: {{status}}</div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 left" *ngIf="onTheWay">הגעה בעוד: {{timeLeft}}</div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <label for="male">צ'אט</label><br>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-3 col-lg-2 col-xl-2">
+                <input type="text" id="name" name="name" [(ngModel)]="name" placeholder="שם">
+            </div>
+            <div class="col-12 col-sm-8 col-md-7 col-lg-8 col-xl-8">
+                <input type="text" id="message" name="message" [(ngModel)]="message" (keyup.enter)="sendMsg()"
+                    placeholder="כתוב משהו">
+            </div>
+            <div class="col-12 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                <button class="button" [disabled]="!message" (click)="sendMsg()">שלח</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div #scrollMe class="messagesDiv" [innerHTML]="chatContent" ></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <button class="button-arrived" (click)="arrived()" [disabled]="!onTheWay">הגעתי</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row form">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <p>מה הסטטוס?</p>
+                <input type="radio" id="not-coming" name="status" value="לא מגיעה" [(ngModel)]="status"
+                    (change)="statusChanged()">
+                <label for="not-coming">לא מגיעה</label><br>
+                <input type="radio" id="Undecided" name="status" value="מתלבטת" [(ngModel)]="status"
+                    (change)="statusChanged()">
+                <label for="Undecided">מתלבטת</label><br>
+                <input type="radio" id="is-coming" name="status" value="החלטתי לבוא" [(ngModel)]="status"
+                    (change)="statusChanged()">
+                <label for="is-coming">החלטתי לבוא</label><br>
+                <input type="radio" id="getting-ready" name="status" value="מתכוננת" [(ngModel)]="status"
+                    (change)="statusChanged()">
+                <label for="getting-ready">מתכוננת</label><br>
+                <input type="radio" id="on-the-way" name="status" value="יצאתי" [(ngModel)]="status"
+                    (change)="statusChanged()">
+                <label for="on-the-way">יצאתי</label>
+                <br>
+                <br>
+                <div *ngIf="onTheWay">
+                    <label for="male">:הגעה בשעה</label><br>
+                    <input type="time" [(ngModel)]="time" (change)="timeDeclared()">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
