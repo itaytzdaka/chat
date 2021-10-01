@@ -4,11 +4,15 @@
     box-sizing: border-box;
 }
 
-
+html,body{
+    height: 100%;
+}
 
 body{
     direction: rtl;
     font: 100px;
     text-align: right;
-
+    color: silver;
 }
+
+

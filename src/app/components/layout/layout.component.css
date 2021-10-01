@@ -1,33 +1,14 @@
-
-
 .layout{
-    padding: 2% 5%;
-    background-color: rgba(55, 198, 255, 0.7);
-
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.container-fluid{
-    margin: 20px 0;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.712);
-    border-radius: 30px;
-}
-
-
-.button-arrived{
-    display: block;
-    background-color: purple;
-    color: white;
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
-    border: none;
-    padding: 10px;
-    margin: 10% auto;
-}
-
-.button-arrived:disabled{
-    background-color: rgba(128, 128, 128, 0.212);
+main{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    overflow: auto; 
 }
 
 
@@ -37,15 +18,13 @@
 
 input[type=text]{
     border: none;
-    border-radius: 30px;
-    background-color: rgba(255, 255, 255, 0.733);
+    background-color: rgb(41, 41, 41);
+    color: silver;
     margin-left: 2%;
     width: 100%;
 }
 
-#message{
-    /* min-width: 55%; */
-}
+
 #name{
     max-width: 150px;
 }
@@ -54,27 +33,27 @@ input:focus {
     outline-width: 0;
 }
 
-.messagesDiv{
+.messagesContainer{
     border: none;
-    border-radius: 30px;
-    min-height: 200px;
-    max-height: 300px;
-    background-color: rgba(255, 255, 255, 0.705);
-    padding: 5px 10px;
-    overflow: auto;
+    background-color: rgb(22, 22, 22);
+    padding: 5px 0;
+    overflow: auto; 
+
 }
+
 
 :host::ng-deep p{
     padding: 0;
     margin: 0;
 }
 
-:host::ng-deep .div-message{
-    background-color: white;
-    color: black;
-    border-radius: 15px;
+:host::ng-deep .div-message div{
+    display: inline-block;
+    background-color: rgb(44, 44, 44);
+    color: silver;
     padding: 5px 20px;
-    margin: 5px 2% 5px 2%;
+    margin: 5px 0;
+    border-radius: 5px;
 }
 
 :host::ng-deep .message{
@@ -117,19 +96,39 @@ input{
 .left{
     text-align: left;
 }
-/*
- .row > div:nth-of-type(1) { background-color: red; }
-.row > div:nth-of-type(2) { background-color: green; }
-.row > div:nth-of-type(3) { background-color: blue; }
-.row > div:nth-of-type(4) { background-color: yellow; }
- */
 
- label{
-    margin-right: 10px;
- }
+
+.layout > div:nth-of-type(1) { background-color: rgb(53, 53, 53);  }
+main > div:nth-of-type(1) { background-color: rgb(22, 22, 22); flex-grow: 1; overflow: auto;}
+main > div:nth-of-type(2) { background-color: rgb(53, 53, 53);  }
+
 
  input[type=radio]{
     margin: 3px;
     width: auto;
  }
 
+ .counter{
+     margin-left: 30px;
+ }
+
+.send{
+    fill: rgb(37, 37, 37);
+    height: 30px;
+    margin: 13px;
+    cursor: pointer;
+}
+
+.row{
+    margin: 0;
+    padding: 0;
+}
+
+
+  ::-webkit-scrollbar{
+    width: .3em;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+  }
