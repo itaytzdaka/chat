@@ -11,7 +11,7 @@ export class SocketService {
 
   private socket: any;
   private chatContent;
-  readonly uri: string = "https://itay-notfication.herokuapp.com/";
+  readonly uri: string = "https://itay-chat.herokuapp.com/";
   // readonly uri: string = "http://localhost:3000";
   constructor() {
     console.log("constructor")
