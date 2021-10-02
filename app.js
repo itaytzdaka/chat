@@ -30,19 +30,38 @@ global.socketServer = socketIO(listener);
 // const server = require('http').Server(app);
 // var io = require('socket.io')(server);
 
+let chatMessages;
+let connectionsCounter=0;
+
+
+
+
+
+
 socketServer.on('connection', socket=>{
     console.log("**************************************************************************************************");
     console.log("Client has been connected.");
 
-    // const chatMessages = cache.get("chat-messages");
-    // socketServer.sockets.emit("chat-messages-from-server", chatMessages);
+    if (!cache.get("chat-messages")) {
+        chatMessages="";
+    }
+    else{
+        chatMessages=cache.get("chat-messages");
+    }
+
+    connectionsCounter++;
+    
+    socketServer.sockets.emit("chat-messages-from-server", chatMessages);
+    socketServer.sockets.emit("chat-sockets-from-server", connectionsCounter);
 
     // Listen to client message: 
     socket.on("msg-from-client", msg => {
+            
+        chatMessages+=msg;
+        cache.put("chat-messages", chatMessages, 1000 * 60 * 60 * 24, (key, value) => {
+            console.log("Removing key: " + key + " with value: ", value);
+        });
 
-        // chatMessages = cache.get("chat-messages");
-        // chatMessages+=msg;
-        
         console.log("Client message: " + msg);
 
         // Send that message to all clients: 
@@ -67,6 +86,8 @@ socketServer.on('connection', socket=>{
     socket.on("disconnect", (reason) => {
         console.log("**************************************************************************************************");
         console.log("Client has been disconnected.");
+        connectionsCounter--;
+        socketServer.sockets.emit("chat-sockets-from-server", connectionsCounter);
         console.log(socket.id);
         console.log(reason);
     });
