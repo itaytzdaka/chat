@@ -6,9 +6,9 @@ const path = require("path");
 
 const server = express();
 
-server.use(express.static(path.join(__dirname, "./dist/chat")));
+server.use(express.static(path.join(__dirname, "./dist/notification")));
 server.use("*", (request, response) => {
-    response.sendFile(path.join(__dirname, "./dist/chat/index.html"));
+    response.sendFile(path.join(__dirname, "./dist/notification/index.html"));
 });
 
 const port = process.env.PORT || 3000;
