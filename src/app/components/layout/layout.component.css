@@ -53,6 +53,7 @@ input:focus {
     padding: 5px 20px;
     margin: 5px 0;
     border-radius: 5px;
+    min-width: 150px;
 }
 
 :host::ng-deep .message{
@@ -61,9 +62,11 @@ input:focus {
 
 :host::ng-deep .name{
     float: right;
+    /* color: var(--randomTextColor); */
 }
 :host::ng-deep .time{
     float: left;
+    color: rgb(88, 88, 88);
 }
 
 

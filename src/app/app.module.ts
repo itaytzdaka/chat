@@ -5,11 +5,12 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 // import { HttpClientModule } from '@angular/common/http';
-
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
   declarations: [
-    LayoutComponent
+    LayoutComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,

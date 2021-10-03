@@ -1,16 +1,16 @@
 <div class="layout">
         <div class="row">
-            <div class="col-7 col-sm-8 col-md-9 col-lg-10 col-xl-10">
+            <div class="col-7 col-sm-8 col-md-9 col-lg-9 col-xl-9">
                 <p>צ'אט</p>
             </div>
-            <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+            <div class="col-5 col-sm-4 col-md-3 col-lg-3 col-xl-3">
                 <p class="left counter">{{this.connections}} מחוברים</p>
             </div>
         </div>
-        <main>
-            <div class="row">
+        <main >
+            <div #scrollMe class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div #scrollMe class="messagesContainer" [innerHTML]="chatContent" ></div>
+                    <div  class="messagesContainer" [innerHTML]="chatContent | safeHtml" ></div>
                 </div>
             </div>
             <div class="row">

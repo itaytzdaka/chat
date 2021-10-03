@@ -1,5 +1,5 @@
 import { SocketService } from './../../services/socket.service';
-import { Component, OnInit, Renderer2, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, ViewChild, AfterViewChecked, HostBinding, Input } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
@@ -12,23 +12,19 @@ import { Subject } from 'rxjs';
 export class LayoutComponent implements OnInit ,AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
-  // public backgroundColor: string;
-  // public status: string;
-  public time: string;
-  // public timeLeft: string;
+
   public chatContent: string;
   public name: string;
   public message: string;
   public connections: number;
-  // public onTheWay: boolean;
-  public interval;
+
+  @HostBinding("style.--randomTextColor")
+  @Input() randomTextColor= "#" + Math.floor(Math.random()*16777215).toString(16);
+
 
   constructor
     (private mySocketService: SocketService, private renderer: Renderer2) {
     this.chatContent = "";
-    // this.status = "אין";
-    // this.backgroundColor = "grey";
-    // this.onTheWay = false;
   }
 
   ngOnInit(): void {
@@ -49,10 +45,9 @@ export class LayoutComponent implements OnInit ,AfterViewChecked {
 
 
   sendMsg() {
-    // this.messages.next(this.message);
     console.log("sendMsg");
     if(this.message){
-      this.mySocketService.emit("msg-from-client", `<div class="div-message"><div><p class="name" > ${this.name || ""}</p><p class="message">${this.message}</p><p class="time"> ${new Date().toString().slice(16, 21)}</p></div></div>`);
+      this.mySocketService.emit("msg-from-client", `<div class="div-message"><div><p class="name" style='color: ${this.randomTextColor}'}"> ${this.name || ""}</p><p class="message">${this.message}</p><p class="time"> ${new Date().toString().slice(16, 21)}</p></div></div>`);
       this.message = undefined;
     }
   }
@@ -64,8 +59,10 @@ export class LayoutComponent implements OnInit ,AfterViewChecked {
   scrollToBottom(): void {
     console.log("scroll");
     try {
-      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch (err) { }
+      this.myScrollContainer.nativeElement.scrollTop=this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { 
+      console.log(err);
+    }
   }
 
   playMessage(){
