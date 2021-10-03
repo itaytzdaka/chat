@@ -20,7 +20,6 @@ input[type=text]{
     border: none;
     background-color: rgb(41, 41, 41);
     color: silver;
-    margin-left: 2%;
     width: 100%;
 }
 
@@ -44,7 +43,7 @@ input:focus {
 
 :host::ng-deep p{
     padding: 0;
-    margin: 0;
+    margin: 3px 0;
 }
 
 :host::ng-deep .div-message div{
@@ -85,7 +84,7 @@ input:focus {
 }
 
 input{
-    margin: 10px 0;
+    margin: 5px 0;
     padding: 5px 10px;
 }
 
@@ -100,7 +99,7 @@ input{
 
 .layout > div:nth-of-type(1) { background-color: rgb(53, 53, 53);  }
 main > div:nth-of-type(1) { background-color: rgb(22, 22, 22); flex-grow: 1; overflow: auto;}
-main > div:nth-of-type(2) { background-color: rgb(53, 53, 53);  }
+main > div:nth-of-type(2) { background-color: rgb(53, 53, 53); padding: 5px 0; }
 
 
  input[type=radio]{
@@ -113,9 +112,10 @@ main > div:nth-of-type(2) { background-color: rgb(53, 53, 53);  }
  }
 
 .send{
+    display: block;
     fill: rgb(37, 37, 37);
     height: 30px;
-    margin: 13px;
+    margin: 7px auto;
     cursor: pointer;
 }
 
@@ -132,3 +132,74 @@ main > div:nth-of-type(2) { background-color: rgb(53, 53, 53);  }
   ::-webkit-scrollbar-thumb {
     background: gray;
   }
+
+  /* from 1023px to 1200px */
+@media only screen and (max-width: 1200px) {
+ 
+}
+
+/* from 767px to 1023px */
+@media only screen and (max-width: 1023px) {
+    h1{
+        font-size: 50px;
+    }
+    #formDiv{
+        width: 600px;
+        height : 165px;
+    }
+    form{
+        padding-top: 20px;
+        margin-left: 85px;
+        line-height: 25px;
+        font-size: 18px;
+    }
+
+    button{
+        margin-top: 0;
+        padding: 2px 6px !important;
+    }
+
+    #containerDiv > div {
+        float: left;
+        width: 150px;
+        height: 200px;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .icon{
+        font-size: 15px;
+    }
+    
+    div p:nth-child(2){
+        width: 140px;
+        height: 110px;
+        font-size: 13px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    div p:nth-child(3){
+        font-size: 13px;
+        font-weight: bold;
+    }
+}
+
+/* from 520px to 767px */
+@media only screen and (max-width: 767px) {
+    input[type=text]{
+        font-size: small;
+    }
+
+    .send{
+        height: 25px;
+    }
+
+    .layout > div:nth-of-type(1) { font-size: small;  }
+
+}
+
+/* up to 520px */
+@media only screen and (max-width: 520px) {
+
+}
