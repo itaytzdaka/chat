@@ -11,6 +11,11 @@
             <div #scrollMe class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div  class="messagesContainer" [innerHTML]="chatContent | safeHtml" ></div>
+                    <div *ngIf="isTyping!=0" class="typing">
+                        <div class="typing__dot"></div>
+                        <div class="typing__dot"></div>
+                        <div class="typing__dot"></div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -18,7 +23,7 @@
                     <input type="text" id="name" name="name" [(ngModel)]="name" placeholder="שם">
                 </div>
                 <div class="col-7 col-sm-8 col-md-9 col-lg-9 col-xl-10">
-                    <input type="text" id="message" name="message" [(ngModel)]="message" (keyup.enter)="sendMsg()"
+                    <input type="text" id="message" name="message" [(ngModel)]="message" (ngModelChange)="changed()" (keyup.enter)="sendMsg()"
                         placeholder="כתוב משהו">
                 </div>
                 <div class="col-2 col-sm-1 col-md-1 col-lg-1 col-xl-1">

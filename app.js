@@ -15,20 +15,6 @@ const port = process.env.PORT || 3000;
 const listener = server.listen(port, () => console.log("Listening on port "+ port));
 global.socketServer = socketIO(listener);
 
-// server.use(cors({credentials: false, origin: true}));
-
-
-// server.use(express.static(__dirname));
-// server.use(cors({
-//     origin: "http://localhost:4200",
-//     credentials: true
-// }));
-// server.use(express.json());
-
-
-//********************* */
-// const server = require('http').Server(app);
-// var io = require('socket.io')(server);
 
 let chatMessages;
 let connectionsCounter=0;
@@ -69,17 +55,14 @@ socketServer.on('connection', socket=>{
     });
 
 
-    socket.on("time-from-client", time => {
-        
-        console.log("Client time: " + time);
+    socket.on("someone-is-typing-from-client", time => {
 
-        // Send that message to all clients: 
-        cache.put("time", time, 1000 * 60 * 60 * 24, (key, value) => {
-            console.log("Removing key: " + key + " with value: ", value);
-        });
+        socketServer.sockets.emit("someone-is-typing-from-server");
+    });
 
-        socketServer.sockets.emit("time-from-server", time);
+    socket.on("someone-stopped-typing-from-client", time => {
 
+        socketServer.sockets.emit("someone-stopped-typing-from-server");
     });
 
 

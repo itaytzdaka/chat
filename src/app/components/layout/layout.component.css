@@ -137,6 +137,52 @@ main > div:nth-of-type(2) { background-color: var(--main-bg-color); padding: 5px
     background: var(--main-color);
   }
 
+
+  .typing {
+    width: 4.3em;
+    height: 2em;
+    position: relative;
+    padding: 10px;
+    margin-left: 5px;
+    background: var(--message-bg-color);
+    border-radius: 5px;
+  }
+
+  .typing__dot {
+    float: left;
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+    background: #8d8c91;
+    border-radius: 50%;
+    opacity: 0;
+    animation: loadingFade 1s infinite;
+  }
+
+  .typing__dot:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .typing__dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .typing__dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes loadingFade {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
   /* from 1023px to 1200px */
 @media only screen and (max-width: 1200px) {
  
@@ -144,49 +190,7 @@ main > div:nth-of-type(2) { background-color: var(--main-bg-color); padding: 5px
 
 /* from 767px to 1023px */
 @media only screen and (max-width: 1023px) {
-    h1{
-        font-size: 50px;
-    }
-    #formDiv{
-        width: 600px;
-        height : 165px;
-    }
-    form{
-        padding-top: 20px;
-        margin-left: 85px;
-        line-height: 25px;
-        font-size: 18px;
-    }
-
-    button{
-        margin-top: 0;
-        padding: 2px 6px !important;
-    }
-
-    #containerDiv > div {
-        float: left;
-        width: 150px;
-        height: 200px;
-        padding: 10px;
-        margin: 10px;
-    }
-
-    .icon{
-        font-size: 15px;
-    }
-    
-    div p:nth-child(2){
-        width: 140px;
-        height: 110px;
-        font-size: 13px;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-
-    div p:nth-child(3){
-        font-size: 13px;
-        font-weight: bold;
-    }
+   
 }
 
 /* from 520px to 767px */

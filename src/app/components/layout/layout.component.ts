@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
 })
-export class LayoutComponent implements OnInit ,AfterViewChecked {
+export class LayoutComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
 
@@ -17,9 +17,10 @@ export class LayoutComponent implements OnInit ,AfterViewChecked {
   public name: string;
   public message: string;
   public connections: number;
+  public isTyping: number = 0;
 
   @HostBinding("style.--randomTextColor")
-  @Input() randomTextColor= "#" + Math.floor(Math.random()*16777215).toString(16);
+  @Input() randomTextColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
 
   constructor
@@ -32,6 +33,16 @@ export class LayoutComponent implements OnInit ,AfterViewChecked {
     this.mySocketService.listen('chat-messages-from-server').subscribe((data: string) => {
       this.chatContent = `${data}`;
     });
+
+
+    this.mySocketService.listen('someone-is-typing-from-server').subscribe(() => {
+      this.isTyping=1;
+    });
+
+    this.mySocketService.listen('someone-stopped-typing-from-server').subscribe(() => {
+      this.isTyping=0;
+    });
+
 
     this.mySocketService.listen('chat-sockets-from-server').subscribe((data: number) => {
       this.connections = data;
@@ -46,8 +57,9 @@ export class LayoutComponent implements OnInit ,AfterViewChecked {
 
   sendMsg() {
     console.log("sendMsg");
-    if(this.message){
+    if (this.message) {
       this.mySocketService.emit("msg-from-client", `<div class="div-message"><div><p class="name" style='color: ${this.randomTextColor}'}"> ${this.name || ""}</p><p class="message">${this.message}</p><p class="time"> ${new Date().toString().slice(16, 21)}</p></div></div>`);
+      this.mySocketService.emit("someone-stopped-typing-from-client", null);
       this.message = undefined;
     }
   }
@@ -59,17 +71,28 @@ export class LayoutComponent implements OnInit ,AfterViewChecked {
   scrollToBottom(): void {
     console.log("scroll");
     try {
-      this.myScrollContainer.nativeElement.scrollTop=this.myScrollContainer.nativeElement.scrollHeight;
-    } catch (err) { 
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {
       console.log(err);
     }
   }
 
-  playMessage(){
+  playMessage() {
     let audio = new Audio();
     audio.src = "../../../assets/audio/message.mp3";
     audio.load();
     audio.play();
+  }
+
+  changed() {
+    if (this.message.length>0) {
+      this.mySocketService.emit("someone-is-typing-from-client", null);
+    }
+    else if(this.message.length==0){
+      this.mySocketService.emit("someone-stopped-typing-from-client", null);
+    }
+
+    console.log("changed");
   }
 
 }
