@@ -1,3 +1,5 @@
+
+
 .layout{
     height: 100%;
     display: flex;
@@ -18,8 +20,8 @@ main{
 
 input[type=text]{
     border: none;
-    background-color: rgb(41, 41, 41);
-    color: silver;
+    background-color: var(--input-bg-color);
+    color: var(--main-color);
     width: 100%;
 }
 
@@ -34,7 +36,7 @@ input:focus {
 
 .messagesContainer{
     border: none;
-    background-color: rgb(22, 22, 22);
+    background-color: var(--chat-bg-color);
     padding: 5px 0;
     overflow: auto; 
 
@@ -48,8 +50,8 @@ input:focus {
 
 :host::ng-deep .div-message div{
     display: inline-block;
-    background-color: rgb(44, 44, 44);
-    color: silver;
+    background-color: var(--message-bg-color);
+    color: var(--main-color);
     padding: 5px 20px;
     margin: 5px 0;
     border-radius: 5px;
@@ -62,15 +64,14 @@ input:focus {
 
 :host::ng-deep .name{
     float: right;
-    /* color: var(--randomTextColor); */
 }
 :host::ng-deep .time{
     float: left;
-    color: rgb(88, 88, 88);
+    color: var(--time-color);
 }
 
 
-.button{
+/* .button{
     width: 100%;
     border-radius: 30px;
     border: none;
@@ -78,7 +79,7 @@ input:focus {
     height: 34px;
     padding: 5px 0;
     margin: 10px 0;
-}
+} */
 
 
 
@@ -100,9 +101,9 @@ input{
 }
 
 
-.layout > div:nth-of-type(1) { background-color: rgb(53, 53, 53);  }
-main > div:nth-of-type(1) { background-color: rgb(22, 22, 22); flex-grow: 1; overflow: auto;}
-main > div:nth-of-type(2) { background-color: rgb(53, 53, 53); padding: 5px 0; }
+.layout > div:nth-of-type(1) { background-color: var(--main-bg-color);  }
+main > div:nth-of-type(1) { background-color: var(--chat-bg-color); flex-grow: 1; overflow: auto;}
+main > div:nth-of-type(2) { background-color: var(--main-bg-color); padding: 5px 0; }
 
 
  input[type=radio]{
@@ -133,7 +134,7 @@ main > div:nth-of-type(2) { background-color: rgb(53, 53, 53); padding: 5px 0; }
   }
 
   ::-webkit-scrollbar-thumb {
-    background: gray;
+    background: var(--main-color);
   }
 
   /* from 1023px to 1200px */
@@ -200,6 +201,9 @@ main > div:nth-of-type(2) { background-color: rgb(53, 53, 53); padding: 5px 0; }
 
     .layout > div:nth-of-type(1) { font-size: small;  }
 
+    :host::ng-deep .div-message div{
+        font-size: small;
+    }
 }
 
 /* up to 520px */
