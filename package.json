@@ -1,0 +1,7 @@
+{
+    "name": "chat-app",
+    "scripts": {
+        "heroku-postbuild": "cd client && npm install && npm run build && cd ../server && npm install && cd .. && cp -r client/dist server/dist"
+    }
+
+}

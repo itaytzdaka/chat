@@ -1,0 +1,216 @@
+
+
+.layout{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    overflow: auto; 
+}
+
+
+.form{
+    text-align: right;
+}
+
+input[type=text]{
+    border: none;
+    background-color: var(--input-bg-color);
+    color: var(--main-color);
+    width: 100%;
+}
+
+
+#name{
+    max-width: 150px;
+}
+
+input:focus {
+    outline-width: 0;
+}
+
+.messagesContainer{
+    border: none;
+    background-color: var(--chat-bg-color);
+    padding: 5px 0;
+    overflow: auto; 
+
+}
+
+
+:host::ng-deep p{
+    padding: 0;
+    margin: 3px 0;
+}
+
+:host::ng-deep .div-message div{
+    display: inline-block;
+    background-color: var(--message-bg-color);
+    color: var(--main-color);
+    padding: 5px 20px;
+    margin: 5px 0;
+    border-radius: 5px;
+    min-width: 150px;
+}
+
+:host::ng-deep .message{
+    clear: both;
+}
+
+:host::ng-deep .name{
+    float: right;
+}
+:host::ng-deep .time{
+    float: left;
+    color: var(--time-color);
+}
+
+
+/* .button{
+    width: 100%;
+    border-radius: 30px;
+    border: none;
+    background-color: white;
+    height: 34px;
+    padding: 5px 0;
+    margin: 10px 0;
+} */
+
+
+
+.center{
+    text-align: center;
+}
+
+input{
+    margin: 5px 0;
+    padding: 5px 10px;
+}
+
+.right{
+    text-align: right;
+}
+
+.left{
+    text-align: left;
+}
+
+
+.layout > div:nth-of-type(1) { background-color: var(--main-bg-color);  }
+main > div:nth-of-type(1) { background-color: var(--chat-bg-color); flex-grow: 1; overflow: auto;}
+main > div:nth-of-type(2) { background-color: var(--main-bg-color); padding: 5px 0; }
+
+
+ input[type=radio]{
+    margin: 3px;
+    width: auto;
+ }
+
+ .counter{
+     margin-left: 30px;
+ }
+
+.send{
+    display: block;
+    fill: rgb(37, 37, 37);
+    height: 30px;
+    margin: 7px auto;
+    cursor: pointer;
+}
+
+.row{
+    margin: 0;
+    padding: 0;
+}
+
+
+  ::-webkit-scrollbar{
+    width: .3em;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+  }
+
+
+  .typing {
+    width: 4.3em;
+    height: 2em;
+    position: relative;
+    padding: 10px;
+    margin-left: 5px;
+    background: var(--message-bg-color);
+    border-radius: 5px;
+  }
+
+  .typing__dot {
+    float: left;
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+    background: #8d8c91;
+    border-radius: 50%;
+    opacity: 0;
+    animation: loadingFade 1s infinite;
+  }
+
+  .typing__dot:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .typing__dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .typing__dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes loadingFade {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* from 1023px to 1200px */
+@media only screen and (max-width: 1200px) {
+ 
+}
+
+/* from 767px to 1023px */
+@media only screen and (max-width: 1023px) {
+   
+}
+
+/* from 520px to 767px */
+@media only screen and (max-width: 767px) {
+    input[type=text]{
+        font-size: small;
+    }
+
+    .send{
+        height: 25px;
+    }
+
+    .layout > div:nth-of-type(1) { font-size: small;  }
+
+    :host::ng-deep .div-message div{
+        font-size: small;
+    }
+}
+
+/* up to 520px */
+@media only screen and (max-width: 520px) {
+
+}

@@ -1,0 +1,35 @@
+<div class="layout">
+        <div class="row">
+            <div class="col-4 col-sm-4 col-md-6 col-lg-9 col-xl-9">
+                <p>צ'אט</p>
+            </div>
+            <div class="col-8 col-sm-8 col-md-6 col-lg-3 col-xl-3">
+                <p class="left counter">{{this.connections}} מחוברים</p>
+            </div>
+        </div>
+        <main >
+            <div #scrollMe class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div  class="messagesContainer" [innerHTML]="chatContent | safeHtml" ></div>
+                    <div *ngIf="isTyping!=0" class="typing">
+                        <div class="typing__dot"></div>
+                        <div class="typing__dot"></div>
+                        <div class="typing__dot"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-1">
+                    <input type="text" id="name" name="name" [(ngModel)]="name" placeholder="שם">
+                </div>
+                <div class="col-7 col-sm-8 col-md-9 col-lg-9 col-xl-10">
+                    <input type="text" id="message" name="message" [(ngModel)]="message" (ngModelChange)="changed()" (keyup.enter)="sendMsg()"
+                        placeholder="כתוב משהו">
+                </div>
+                <div class="col-2 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+                    <svg (click)="sendMsg()" class="send" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 357.5 331.6"><path d="M357.5 10.8C353.8.2 347-2.5 336.5 2.3L9.5 153.1c-9.1 4.2-11.3 12.3-8.1 18.5 1.7 3.5 4.7 5.3 8 6.8l124.2 57.3L337 329.6c7.8 3.6 14 2.5 18-3.2a35.6 35.6 0 002.4-4.8v-5c-.2-3.3-2-6-4-8.6l-104-138.5c-2.7-3.7-2.7-3.7 0-7.3L353.7 23.3c2-2.5 3.5-5 3.8-8.3z"></path></svg>
+                </div>
+            </div>
+        </main>
+        
+    </div>
