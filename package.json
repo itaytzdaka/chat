@@ -2,6 +2,10 @@
     "name": "chat-app",
     "scripts": {
         "heroku-postbuild": "cd client && npm install && npm run build && cd ../server && npm install && cd .. && cp -r client/dist server/dist"
+    },
+    "engines": {
+        "node": "12.16.1",
+        "npm": "6.13.4"
     }
 
 }
